@@ -1,6 +1,14 @@
 version: '3'
 
 services:
+  novnc:
+    image: theasp/novnc
+    ports:
+      - 127.0.0.1:8080:8080
+    environment:
+      - DISPLAY_HEIGHT=1920
+      - DISPLAY_WIDTH=1080
+      - RUN_XTERM=no
   tourist:
     build: .
     # image: ghcr.io/ctfd/tourist:latest
@@ -8,6 +16,9 @@ services:
       - '3000:3000'
     environment:
       REDIS_URL: redis://redis:6379
-
+      ENABLE_AUTHENTICATION: false
+      DISPLAY: novnc:0
+    depends_on:
+    - novnc
   redis:
     image: redis:7.0-alpine

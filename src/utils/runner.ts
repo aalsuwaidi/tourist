@@ -51,6 +51,7 @@ export class PlaywrightRunner {
       // it's an intentional trade-off - as it's better to always wait 50ms longer
       // than to have to wait for networkidle state which may lead to stalling.
       slowMo: 50,
+      headless: false,
     };
 
     if (this._debug) {
